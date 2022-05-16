@@ -1,0 +1,10 @@
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("35163","Mathematics");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("53928","Computer Science");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("34643","Physics");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("61752","Biology");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("53563","Chemistry");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("51281","Geology");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("29452","Law");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("70724","Natural Sciences");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("47354","Economics");
+INSERT INTO scientific_field (scfield_id,name_scfield) VALUES ("60660","Irrelevant");
