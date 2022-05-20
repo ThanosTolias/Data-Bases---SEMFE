@@ -57,8 +57,10 @@ for _ in range(DUMMY_DATA_NUMBER_2):
         budgetRC2 = random.randint(0, 10000000)
     content += f'INSERT INTO {TABLE_NAME_2} ({",".join(TABLE_COLUMNS_2)}) VALUES ("{orgID}", "{name}", "{abbreviation}", "{city}", "{street}", "{postalcode}", "{organisationtype}", "{fundscompany}", "{budgetuniministry}", "{budgetRC1}", "{budgetRC2}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_2}.txt", 'w') as f:
+with open(f"insert_data.sql", 'w') as f:
+    f.write("-- organization \n")
     f.write(content)
+    f.write("\n")
 
 
 
@@ -93,8 +95,10 @@ for _ in range(DUMMY_DATA_NUMBER_1):
     date = str(year1) + "-" + str(month1) + "-" + str(day1)
     organization_id = random.choice(org_IDs)
     content += f'INSERT INTO {TABLE_NAME_1} ({",".join(TABLE_COLUMNS_1)}) VALUES ("{researcher_id}", "{firstName}", "{lastName}", "{birthday}", "{gender}", "{organization_id}", "{date}");\n'
-with open(f"dummy_data_{TABLE_NAME_1}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- researcher \n")
     f.write(content)
+    f.write("\n")
 
 
 
@@ -121,8 +125,10 @@ for _ in range(DUMMY_DATA_NUMBER_4):
     management = fake.name()
     content += f'INSERT INTO {TABLE_NAME_4} ({",".join(TABLE_COLUMNS_4)}) VALUES ("{program_id}","{name}","{management}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_4}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- program \n")
     f.write(content)
+    f.write("\n")
 
 
 DUMMY_DATA_NUMBER_5 = 10;
@@ -147,8 +153,10 @@ for _ in range(DUMMY_DATA_NUMBER_5):
     name = sci_fi[_]
     content += f'INSERT INTO {TABLE_NAME_5} ({",".join(TABLE_COLUMNS_5)}) VALUES ("{scfield_id}","{name}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_5}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- scientific_field \n")
     f.write(content)
+    f.write("\n")
 
 DUMMY_DATA_NUMBER_6 = DUMMY_DATA_NUMBER_3;
 TABLE_NAME_6 = "evaluation";
@@ -171,9 +179,10 @@ for _ in range(DUMMY_DATA_NUMBER_6):
     dateEv = str(year) + "-" + str(month) + "-" + str(day)
     content += f'INSERT INTO {TABLE_NAME_6} ({",".join(TABLE_COLUMNS_6)}) VALUES ("{evaluation_id}","{grade}", "{dateEv}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_6}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- evaluation \n")
     f.write(content)
-
+    f.write("\n")
 
 
 ###Executive
@@ -194,8 +203,10 @@ for _ in range(DUMMY_DATA_NUMBER_7):
     nameEx = fake.name()
     content += f'INSERT INTO {TABLE_NAME_7} ({",".join(TABLE_COLUMNS_7)}) VALUES ("{executive_id}","{nameEx}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_7}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- executive \n")
     f.write(content)
+    f.write("\n")
 
 
 ###Project
@@ -242,9 +253,10 @@ for i in range(DUMMY_DATA_NUMBER_3):
     content += f'INSERT INTO {TABLE_NAME_3} ({",".join(TABLE_COLUMNS_3)}) VALUES ("{project_id}","{title}", "{startdate}", "{enddate}", "{abstract}", "{funding}", "{evaluator_id}", "{accountable_id}", "{program_id}", "{executive_id}", "{organization_id}", "{evaluation_id}");\n'
 
     
-with open(f"dummy_data_{TABLE_NAME_3}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- project \n")
     f.write(content)
-
+    f.write("\n")
 
 
 ###Deliverable
@@ -273,8 +285,10 @@ for _ in range(DUMMY_DATA_NUMBER_8):
     deliveryday = str(year) + "-" + str(month) + "-" + str(day)
     content += f'INSERT INTO {TABLE_NAME_8} ({",".join(TABLE_COLUMNS_8)}) VALUES ("{project_id}","{deliverable_id}","{title}", "{abstract}", "{deliveryday}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_8}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- deliverable \n")
     f.write(content)
+    f.write("\n")
 
 DUMMY_DATA_NUMBER_9 = DUMMY_DATA_NUMBER_2;
 TABLE_NAME_9 = "phone_number";
@@ -291,9 +305,11 @@ for _ in range(DUMMY_DATA_NUMBER_9):
     phone = random.randint(1000000000,9999999999)
     content += f'INSERT INTO {TABLE_NAME_9} ({",".join(TABLE_COLUMNS_9)}) VALUES ("{organization_id}","{phone}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_9}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- phone_number \n")
     f.write(content)
-
+    f.write("\n")
+    
 
 #Works On Project
 DUMMY_DATA_NUMBER_10 = 50;
@@ -313,8 +329,10 @@ for _ in range(DUMMY_DATA_NUMBER_10):
     researcher_id = random.choice(research_IDs)
     content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_10}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- works_on_project \n")
     f.write(content)
+    f.write("\n")
     
 
 #Scientific Field of Project
@@ -336,11 +354,12 @@ for _ in range(DUMMY_DATA_NUMBER_11):
     project_id = random.choice(proj_IDs)
     content += f'INSERT INTO {TABLE_NAME_11} ({",".join(TABLE_COLUMNS_11)}) VALUES ("{scfield_id}","{project_id}");\n'
 
-with open(f"dummy_data_{TABLE_NAME_11}.txt", 'w') as f:
+with open(f"insert_data.sql", 'a') as f:
+    f.write("-- scientific_field_project \n")
     f.write(content)
-
+    f.write("\n")
     
-print("over")
-
+    
+#print("over")
 
 
