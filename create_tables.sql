@@ -4,20 +4,23 @@ USE dbproject;
 
 CREATE TABLE deliverable
 (
-	project_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    deliverable_id INT UNSIGNED NOT NULL,
+    deliverable_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    project_id INT UNSIGNED NOT NULL, 
+    -- deliverable_id INT UNSIGNED NOT NULL,
     title VARCHAR(50) NOT NULL,
-    abstract VARCHAR(50) NOT NULL,
+    abstract VARCHAR(200) NOT NULL,
 	deliverable_date DATE NOT NULL,
-    PRIMARY KEY (project_id, deliverable_id)
+    PRIMARY KEY (deliverable_id, project_id)
+    -- PRIMARY KEY (project_id, deliverable_id)
 );
 
 CREATE TABLE evaluation
 (
 	evaluation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    grade TINYINT NOT NULL,
+    grade TINYINT UNSIGNED NOT NULL,
     date_eval DATE NOT NULL,
-    PRIMARY KEY (evaluation_id)
+    PRIMARY KEY (evaluation_id),
+    CHECK (grade <= 10)
 );
 
 CREATE TABLE program
@@ -42,18 +45,18 @@ CREATE TABLE organization
     abbreviation VARCHAR(6) NOT NULL,
     city VARCHAR(50) NOT NULL,
     street VARCHAR(50) NOT NULL,
-	postal_code INT NOT NULL,
+	postal_code INT UNSIGNED NOT NULL,
     org_type ENUM('University', 'Company', 'Research Center') NOT NULL,
-    funds_company INT DEFAULT NULL,
-    budget_uni_ministry INT DEFAULT NULL, -- tsekaroume onomata attributes
-    budget_rc1 INT DEFAULT NULL,
-    budget_rc2 INT DEFAULT NULL,
+    funds_company INT UNSIGNED DEFAULT NULL,
+    budget_uni_ministry INT UNSIGNED DEFAULT NULL, -- tsekaroume onomata attributes
+    budget_rc1 INT UNSIGNED DEFAULT NULL,
+    budget_rc2 INT UNSIGNED DEFAULT NULL,
     PRIMARY KEY (organization_id)
 );
 
 CREATE TABLE researcher
 (
-    researcher_id INT NOT NULL AUTO_INCREMENT,
+    researcher_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     birthdate DATE NOT NULL,
@@ -61,7 +64,7 @@ CREATE TABLE researcher
 	organization_id INT UNSIGNED NOT NULL,
     datework DATE NOT NULL,
     PRIMARY KEY (researcher_id),
-	FOREIGN KEY (organization_id) REFERENCES organization(organization_id) ON DELETE RESTRICT ON UPDATE CASCADE
+	FOREIGN KEY (organization_id) REFERENCES organization(organization_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE scientific_field
@@ -79,28 +82,30 @@ CREATE TABLE project
     end_date DATE NOT NULL,
     abstract VARCHAR(200) NOT NULL,
     funds INT UNSIGNED NOT NULL,
-    evaluator_id INT NOT NULL,
-	accountable_id INT NOT NULL,
+    evaluator_id INT UNSIGNED NOT NULL,
+	accountable_id INT UNSIGNED NOT NULL,
     program_id INT UNSIGNED NOT NULL,
 	executive_id INT UNSIGNED NOT NULL,
     organization_id INT UNSIGNED NOT NULL,
 	evaluation_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (project_id),
-	FOREIGN KEY (evaluator_id) REFERENCES researcher(researcher_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (accountable_id) REFERENCES researcher(researcher_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (executive_id) REFERENCES executive(executive_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (organization_id) REFERENCES organization(organization_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (evaluation_id) REFERENCES evaluation(evaluation_id) ON DELETE RESTRICT ON UPDATE CASCADE
+	FOREIGN KEY (evaluator_id) REFERENCES researcher(researcher_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (accountable_id) REFERENCES researcher(researcher_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (executive_id) REFERENCES executive(executive_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (organization_id) REFERENCES organization(organization_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (evaluation_id) REFERENCES evaluation(evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CHECK (datediff(end_date, start_date) <= 4*365 AND datediff(end_date, start_date) >= 365), 
+    CHECK (funds >= 100000 and funds <= 1000000)
 );
 
 CREATE TABLE works_on_project
 (
 	project_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-   	researcher_id INT NOT NULL,
+   	researcher_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (project_id, researcher_id),
-    FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (researcher_id) REFERENCES researcher(researcher_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (researcher_id) REFERENCES researcher(researcher_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE scientific_field_project
@@ -108,13 +113,13 @@ CREATE TABLE scientific_field_project
 	scfield_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
    	project_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (scfield_id, project_id),
-    FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY (scfield_id) REFERENCES scientific_field(scfield_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (scfield_id) REFERENCES scientific_field(scfield_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE phone_number
 (
 	organization_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    phone BIGINT NOT NULL,
+    phone BIGINT UNSIGNED NOT NULL,
 	PRIMARY KEY (organization_id, phone)
 );
