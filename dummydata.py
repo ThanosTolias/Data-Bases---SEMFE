@@ -174,7 +174,7 @@ for i in range(DUMMY_DATA_NUMBER_6):
 
 for _ in range(DUMMY_DATA_NUMBER_6):
     evaluation_id=eval_IDs[_]
-    grade = random.randint(0,10)
+    grade = random.randint(5,10)
     day = random.randint(1,28)
     month = random.randint(1,12)
     year = random.randint(2013, 2014)
@@ -220,7 +220,9 @@ nums = random.sample(range(100,999),DUMMY_DATA_NUMBER_3)
 
 
 proj_IDs = []
-
+proj_SDday = []
+proj_SDmonth = []
+proj_SDyear = []
 
 for i in range(DUMMY_DATA_NUMBER_3):
     proj = random.choice([i for i in range(10000,99999) if i not in usedKeys])
@@ -233,8 +235,11 @@ for i in range(DUMMY_DATA_NUMBER_3):
     project_id = proj_IDs[i]
     title = "project" + str(nums[i])
     day = random.randint(1,28)
-    month = random.randint(1,12)
+    proj_SDday.append(day)
+    month = random.randint(2,12)
+    proj_SDmonth.append(month)
     year = random.randint(2015, 2022)
+    proj_SDyear.append(year)
     startdate = str(year) + "-" + str(month) + "-" + str(day)
     day1 = random.randint(1,28)
     month1 = random.randint(1,12)
@@ -260,7 +265,7 @@ with open(f"insert_data.sql", 'a') as f:
 ###Deliverable
 DUMMY_DATA_NUMBER_8 = 10;
 TABLE_NAME_8 = "deliverable";
-TABLE_COLUMNS_8 = ["project_id","deliverable_id","title", "abstract", "deliverable_date"]
+TABLE_COLUMNS_8 = ["deliverable_id","project_id","title", "abstract", "deliverable_date"]
 content = "";
 
 nums2 = random.sample(range(100,999),DUMMY_DATA_NUMBER_8)
@@ -273,15 +278,16 @@ for i in range(DUMMY_DATA_NUMBER_8):
     deliv_IDs.append(deli)
 
 for _ in range(DUMMY_DATA_NUMBER_8):
-    project_id = random.choice(proj_IDs)
+    num = random.randint(1,DUMMY_DATA_NUMBER_3)
+    project_id = proj_IDs[num]
     deliverable_id=deliv_IDs[_]
     title = "title" + str(+ nums[_])
     abstract = fake.paragraph(nb_sentences=2)
-    day4 = (day1+random.randint(1,20))%28 
-    month4 = month1
-    year4 = year1
-    deliveryday = str(year) + "-" + str(month) + "-" + str(day)
-    content += f'INSERT INTO {TABLE_NAME_8} ({",".join(TABLE_COLUMNS_8)}) VALUES ("{project_id}","{deliverable_id}","{title}", "{abstract}", "{deliveryday}");\n'
+    day4 = (proj_SDday[num] + random.randint(1,30))%28 
+    month4 = proj_SDmonth[num] -1
+    year4 = proj_SDyear[num] + 1
+    deliveryday = str(year4) + "-" + str(month4) + "-" + str(day4)
+    content += f'INSERT INTO {TABLE_NAME_8} ({",".join(TABLE_COLUMNS_8)}) VALUES ("{deliverable_id}","{project_id}","{title}", "{abstract}", "{deliveryday}");\n'
 
 with open(f"insert_data.sql", 'a') as f:
     f.write("-- deliverable \n")
@@ -359,5 +365,3 @@ with open(f"insert_data.sql", 'a') as f:
     
     
 #print("over")
-
-
