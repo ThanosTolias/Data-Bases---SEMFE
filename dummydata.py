@@ -15,6 +15,12 @@ DUMMY_DATA_NUMBER_3 = 50
 
 
 ### Organization
+
+class Organiz:
+    def __init__(self, organiz_id):
+        self.organiz_id = organiz_id 
+        self.researchers = []
+
 DUMMY_DATA_NUMBER_2 = 30;
 TABLE_NAME_2 = "organization";
 TABLE_COLUMNS_2 = ["organization_id", "name_org", "abbreviation", "city", "street", "postal_code", "org_type", "funds_company", "budget_uni_ministry", "budget_rc1", "budget_rc2" ]
@@ -25,6 +31,9 @@ cityN = ["Athens", "Thessaloniki", "Larisa", "Patra", "Heraklion", "Trikala", "C
 street_names = ["Agathiou", "Eleftheriou Venizelou", "Samothrakis", "Evripidou", "Kantonia", "Androutsou", "Mpotsari", "Ippokratous", "Kifisou", "Klepsydra", "Nikopoleos", "Orionos"]
 
 org_IDs = random.sample(range(10000,99999),DUMMY_DATA_NUMBER_2)
+organizationsL = []
+
+
 
 for i in range(len(org_IDs)):
     usedKeys.append(org_IDs[i])
@@ -56,6 +65,8 @@ for _ in range(DUMMY_DATA_NUMBER_2):
         budgetRC1 = random.randint(0,100000000)
         budgetRC2 = random.randint(0, 100000000)
     content += f'INSERT INTO {TABLE_NAME_2} ({",".join(TABLE_COLUMNS_2)}) VALUES ("{orgID}", "{name}", "{abbreviation}", "{city}", "{street}", "{postalcode}", "{organisationtype}", "{fundscompany}", "{budgetuniministry}", "{budgetRC1}", "{budgetRC2}");\n'
+    org1 = Organiz(orgID)
+    organizationsL.append(org1)
 
 with open(f"insert_data.sql", 'w') as f:
     f.write("-- organization \n")
@@ -66,12 +77,19 @@ with open(f"insert_data.sql", 'w') as f:
 
 
 ###Researcher
+
+
+
 DUMMY_DATA_NUMBER_1 = 120;
 TABLE_NAME_1 = "researcher";
 TABLE_COLUMNS_1 = ["researcher_id","first_name", "last_name", "birthdate", "gender","organization_id", "datework"]
 content = "";
 
 research_IDs = []
+
+
+
+    
 
 for i in range(DUMMY_DATA_NUMBER_1):
     res = random.choice([i for i in range(10000,99999) if i not in usedKeys])
@@ -80,8 +98,10 @@ for i in range(DUMMY_DATA_NUMBER_1):
 
 genders = ["Male", "Female", "Non-Binary"]
 
-for _ in range(DUMMY_DATA_NUMBER_1):
-    researcher_id = research_IDs[_]
+
+#next bit is in order to make every org have at least one researcher
+for i in range(len(org_IDs)):
+    researcher_id = research_IDs[i]
     firstName = fake.first_name()
     lastName = fake.last_name()
     day = random.randint(1,28)
@@ -93,7 +113,26 @@ for _ in range(DUMMY_DATA_NUMBER_1):
     month1 = random.randint(1,12)
     year1 = random.randint(2010,2022)
     date = str(year1) + "-" + str(month1) + "-" + str(day1)
-    organization_id = random.choice(org_IDs)
+    organization_id = org_IDs[i-1]
+    organizationsL[i-1].researchers.append(researcher_id)
+    content += f'INSERT INTO {TABLE_NAME_1} ({",".join(TABLE_COLUMNS_1)}) VALUES ("{researcher_id}", "{firstName}", "{lastName}", "{birthday}", "{gender}", "{organization_id}", "{date}");\n'
+    
+for _ in range(DUMMY_DATA_NUMBER_1 - len(org_IDs)):
+    researcher_id = research_IDs[len(org_IDs)+_]
+    firstName = fake.first_name()
+    lastName = fake.last_name()
+    day = random.randint(1,28)
+    month = random.randint(1,12)
+    year = random.randint(1950, 2000)
+    birthday = str(year) + "-" + str(month) + "-" + str(day)
+    gender = random.choice(genders)
+    day1 = random.randint(1,28)
+    month1 = random.randint(1,12)
+    year1 = random.randint(2010,2022)
+    date = str(year1) + "-" + str(month1) + "-" + str(day1)
+    num = random.randint(1,len(org_IDs)-1)
+    organization_id = org_IDs[num]
+    organizationsL[num].researchers.append(researcher_id)
     content += f'INSERT INTO {TABLE_NAME_1} ({",".join(TABLE_COLUMNS_1)}) VALUES ("{researcher_id}", "{firstName}", "{lastName}", "{birthday}", "{gender}", "{organization_id}", "{date}");\n'
 with open(f"insert_data.sql", 'a') as f:
     f.write("-- researcher \n")
@@ -223,6 +262,7 @@ proj_IDs = []
 proj_SDday = []
 proj_SDmonth = []
 proj_SDyear = []
+proj_org = []
 
 for i in range(DUMMY_DATA_NUMBER_3):
     proj = random.choice([i for i in range(10000,99999) if i not in usedKeys])
@@ -251,7 +291,9 @@ for i in range(DUMMY_DATA_NUMBER_3):
     accountable_id = random.choice(research_IDs)
     program_id = random.choice(progr_IDs)
     executive_id= random.choice(exe_IDs)
-    organization_id = random.choice(org_IDs)
+    num4 = random.randint(1,len(org_IDs)-1)
+    organization_id = org_IDs[num4]
+    proj_org.append(num4)
     evaluation_id = random.choice(eval_IDs)
     content += f'INSERT INTO {TABLE_NAME_3} ({",".join(TABLE_COLUMNS_3)}) VALUES ("{project_id}","{title}", "{startdate}", "{enddate}", "{abstract}", "{funding}", "{evaluator_id}", "{accountable_id}", "{program_id}", "{executive_id}", "{organization_id}", "{evaluation_id}");\n'
 
@@ -313,7 +355,8 @@ with open(f"insert_data.sql", 'a') as f:
     f.write("-- phone_number \n")
     f.write(content)
     f.write("\n")
-    
+
+print(organizationsL)
 
 #Works On Project
 DUMMY_DATA_NUMBER_10 = 50;
@@ -324,13 +367,14 @@ content = "";
 #required relationships due to total participation
 for _ in range(len(proj_IDs)):
     project_id = proj_IDs[_]
-    researcher_id = random.choice(research_IDs)
+    researcher_id = random.choice(organizationsL[proj_org[_]].researchers)
     content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
 
 #extra relationships
 for _ in range(DUMMY_DATA_NUMBER_10):
-    project_id = random.choice(proj_IDs)
-    researcher_id = random.choice(research_IDs)
+    num5 = random.randint(1, len(proj_IDs)-1)
+    project_id = proj_IDs[num5]
+    researcher_id = random.choice(organizationsL[proj_org[_]].researchers)
     content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
 
 with open(f"insert_data.sql", 'a') as f:
