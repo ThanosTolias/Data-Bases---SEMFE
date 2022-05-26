@@ -374,7 +374,7 @@ for _ in range(len(proj_IDs)):
 for _ in range(DUMMY_DATA_NUMBER_10):
     num5 = random.randint(1, len(proj_IDs)-1)
     project_id = proj_IDs[num5]
-    researcher_id = random.choice(organizationsL[proj_org[_]].researchers)
+    researcher_id = random.choice(organizationsL[proj_org[nums5]].researchers)
     content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
 
 with open(f"insert_data.sql", 'a') as f:
