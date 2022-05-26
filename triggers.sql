@@ -77,5 +77,27 @@ BEGIN
 		SET MESSAGE_TEXT = 'evaluator of project cannot be a researcher in this project';
 	END IF;
 END//
-    
+
+DELIMITER ;
+
+-- Trigger: researcher works only on projects of his organization
+DROP TRIGGER IF EXISTS tr_res_org;
+DELIMITER //
+CREATE TRIGGER tr_res_org BEFORE INSERT ON works_on_project
+FOR EACH ROW
+BEGIN
+	DECLARE researcher_organization_id INT;
+    DECLARE project_organization_id INT;
+    SET researcher_organization_id = 
+    (SELECT r.organization_id FROM researcher r
+    WHERE r.researcher_id = new.researcher_id);
+    SET project_organization_id = 
+    (SELECT p.organization_id FROM project p
+    WHERE p.project_id = new.project_id);
+    IF researcher_organization_id != project_organization_id THEN
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'researcher cannot work on projects of another organization';
+	END IF;
+END //
+
 DELIMITER ;
