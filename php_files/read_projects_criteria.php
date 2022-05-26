@@ -16,15 +16,15 @@
                         //$program_name = $_POST['Program Name'];
                         //$program_ID = $_POST['Program ID'];
 
-                        $user_year = $_POST['Year'];
-                        $user_month = $_POST['Month'];
-                        $user_day = $_POST['Day'];
+                        //$user_year = $_POST['Year'];
+                        //$user_month = $_POST['Month'];
+                        //$user_day = $_POST['Day'];
 
-                        //$user_year = 2023;
-                        //$user_month = 12;
-                        //$user_day = 16;
-                        //$project_duration = 20;
-                        //$executive = "Philip Stewart";
+                        $user_year = 2023;
+                        $user_month = 12;
+                        $user_day = 16;
+                        $project_duration = 20;
+                        $executive = "Philip Stewart";
 
                         //$user_date = $user_year . "-" . $user_month . "-" . $user_day; // san na leme energa projects
                         //$project_duration = $_POST['< Project Duration (months)']; // diarkoun mexri $project_duration mhnes
@@ -103,21 +103,26 @@
                                     while($row = mysqli_fetch_row($result)){
                                         echo '<tr>';
                                             echo '<td>' . $row[0] . '</td>';
-                                            echo '<td>' . $row[1] . '    </td>';
+                                            echo '<td>' . $row[1] . '</td>';
                                             echo '<td>' . $row[2] . '</td>';
                                             echo '<td>' . $row[3] . '</td>';
                                             echo '<td>' . $row[4] . '</td>';
                                             echo '<td>' . $row[5] . '</td>';
-                                            // echo '<td>';
-                                               /* echo '<a type="button" href="./update_student.php?id=' . $row[0]. '">';
+                                            echo '<td>';
+                                                echo '<a type="button" href="./update_project.php?id=' . $row[0]. '">';
                                                     echo '<i class="fa fa-edit"></i>';
-                                                echo '</a>'; */
-                                            // echo '</td>';
-                                            /* echo '<td>';
-                                                echo '<a type="button" href="./delete_student.php?id=' . $row[0]. '">';
+                                                echo '</a>';
+                                               echo '</td>';
+                                            echo '<td>';
+                                                echo '<a type="button" href="./show_researchers_of_project.php?id=' . $row[0]. '">';
                                                     echo '<i class = "fa fa-trash"></i>';
                                                 echo '</a>';
-                                            echo '</td>'; */
+                                            echo '</td>';
+                                            echo '<td>';
+                                                echo '<a type="button" href="./delete_project.php?id=' . $row[0]. '">';
+                                                    echo '<i class = "fa fa-trash"></i>';
+                                                echo '</a>';
+                                            echo '</td>';
                                         echo '</tr>';
                                     }
                                     echo '</tbody>';
