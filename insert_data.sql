@@ -460,52 +460,30 @@ INSERT INTO works_on_project (project_id,researcher_id) VALUES ("32280","88266")
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("13267","51655");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("39000","93614");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("38193","41418");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("42605","94181");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("13386","14828");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("77561","49671");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("81641","14380");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("15556","10310");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("97401","25532");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("37214","27686");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("96255","45300");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("66656","25532");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("43499","85179");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("13685","25022");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("97784","34971");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("97401","25532");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("33871","86807");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("42605","97399");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("43499","26684");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("13267","42116");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("72572","17402");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("69649","84249");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("64158","27686");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("43850","19693");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("89708","42116");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("81641","74769");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("85309","93359");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("18734","28507");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("14285","74978");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("63606","97389");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("50466","17300");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("89708","25711");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("39000","68457");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("15556","86807");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("50597","64800");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("25264","56816");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("53902","84249");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("88959","13323");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("32280","31488");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("32280","34971");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("18734","84804");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("53902","72701");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("39000","93614");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("50597","64800");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("13267","74978");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("85309","93359");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("76399","42882");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("15556","10310");
-INSERT INTO works_on_project (project_id,researcher_id) VALUES ("58370","55977");
 INSERT INTO works_on_project (project_id,researcher_id) VALUES ("33871","10310");
 
 -- scientific_field_project 
@@ -569,4 +547,3 @@ INSERT INTO scientific_field_project (scfield_id,project_id) VALUES ("19320","88
 INSERT INTO scientific_field_project (scfield_id,project_id) VALUES ("15810","66656");
 INSERT INTO scientific_field_project (scfield_id,project_id) VALUES ("19320","31775");
 INSERT INTO scientific_field_project (scfield_id,project_id) VALUES ("11696","48151");
-
