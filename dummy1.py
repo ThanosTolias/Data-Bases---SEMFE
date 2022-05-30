@@ -285,7 +285,7 @@ for i in range(DUMMY_DATA_NUMBER_3):
     proj_SDday.append(day)
     month = random.randint(2,12)
     proj_SDmonth.append(month)
-    year = random.randint(2015, 2022)
+    year = random.randint(2020, 2022)
     proj_SDyear.append(year)
     startdate = str(year) + "-" + str(month) + "-" + str(day)
     day1 = random.randint(1,28)
@@ -368,7 +368,7 @@ with open(f"insert_data.sql", 'a') as f:
 print(projList[1].researchers)
 
 #Works On Project
-DUMMY_DATA_NUMBER_10 = 1200;
+DUMMY_DATA_NUMBER_10 = 300;
 TABLE_NAME_10 = "works_on_project";
 TABLE_COLUMNS_10 = ["project_id","researcher_id"]
 content = "";
@@ -376,20 +376,25 @@ content = "";
 #required relationships due to total participation
 for _ in range(len(proj_IDs)):
     project_id = proj_IDs[_]
-    if(len(projList[_].researchers)!= 0):
-        researcher_id = random.choice(projList[_].researchers)
-        projList[_].researchers.remove(researcher_id)
+    for i in range(len(projList[_].researchers)):
+        researcher_id = projList[_].researchers[i]
         content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
 
-#extra relationships
-for _ in range(DUMMY_DATA_NUMBER_10):
-    num5 = random.randint(1, len(proj_IDs)-1)
-    project_id = proj_IDs[num5]
-    if(len(projList[num5].researchers)!= 0):
-        researcher_id = random.choice(projList[num5].researchers)
-        projList[num5].researchers.remove(researcher_id)
-        content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
-
+##poolProj = proj_IDs
+##
+###extra relationships
+##for _ in range(DUMMY_DATA_NUMBER_10):
+##    
+##    num5 = random.randint(1, len(poolProj))
+##    project_id = poolProj[num5]
+##    print(projList[num5].researchers)
+##    if(len(projList[num5].researchers)!= 0):
+##        researcher_id = random.choice(projList[num5].researchers)
+##        projList[num5].researchers.remove(researcher_id)
+##        content += f'INSERT INTO {TABLE_NAME_10} ({",".join(TABLE_COLUMNS_10)}) VALUES ("{project_id}","{researcher_id}");\n'
+##    else:
+##        poolProj.remove(poolProj[num5])
+##
 with open(f"insert_data.sql", 'a') as f:
     f.write("-- works_on_project \n")
     f.write(content)
@@ -418,33 +423,33 @@ with open(f"insert_data.sql", 'a') as f:
     f.write("\n")
 
 ###Deliverable
-DUMMY_DATA_NUMBER_8 = 10;
-TABLE_NAME_8 = "deliverable";
-TABLE_COLUMNS_8 = ["deliverable_id","project_id","title", "abstract", "deliverable_date"]
-content = "";
-
-nums2 = random.sample(range(100,999),DUMMY_DATA_NUMBER_8)
-
-deliv_IDs = []
-
-for i in range(DUMMY_DATA_NUMBER_8):
-    deli = random.choice([i for i in range(10000,99999) if i not in usedKeys])
-    usedKeys.append(deli)
-    deliv_IDs.append(deli)
-print(proj_IDs)
-for _ in range(DUMMY_DATA_NUMBER_8):
-    num = random.randint(1,len(proj_IDs))
-    project_id = proj_IDs[num]
-    deliverable_id=deliv_IDs[_]
-    title = "title" + str(+ nums[_])
-    abstract = fake.paragraph(nb_sentences=2)
-    day4 = (proj_SDday[num] + random.randint(1,30))%28 
-    month4 = proj_SDmonth[num] -1
-    year4 = proj_SDyear[num] + 1
-    deliveryday = str(year4) + "-" + str(month4) + "-" + str(day4)
-    content += f'INSERT INTO {TABLE_NAME_8} ({",".join(TABLE_COLUMNS_8)}) VALUES ("{deliverable_id}","{project_id}","{title}", "{abstract}", "{deliveryday}");\n'
-
-with open(f"insert_data.sql", 'a') as f:
-    f.write("-- deliverable \n")
-    f.write(content)
-    f.write("\n")
+##DUMMY_DATA_NUMBER_8 = 10;
+##TABLE_NAME_8 = "deliverable";
+##TABLE_COLUMNS_8 = ["deliverable_id","project_id","title", "abstract", "deliverable_date"]
+##content = "";
+##
+##nums2 = random.sample(range(100,999),DUMMY_DATA_NUMBER_8)
+##
+##deliv_IDs = []
+##
+##for i in range(DUMMY_DATA_NUMBER_8):
+##    deli = random.choice([i for i in range(10000,99999) if i not in usedKeys])
+##    usedKeys.append(deli)
+##    deliv_IDs.append(deli)
+##print(proj_IDs)
+##for _ in range(DUMMY_DATA_NUMBER_8):
+##    num = random.randint(1,len(proj_IDs))
+##    project_id = proj_IDs[num]
+##    deliverable_id=deliv_IDs[_]
+##    title = "title" + str(+ nums[_])
+##    abstract = fake.paragraph(nb_sentences=2)
+##    day4 = (proj_SDday[num] + random.randint(1,30))%28 
+##    month4 = proj_SDmonth[num] -1
+##    year4 = proj_SDyear[num] + 1
+##    deliveryday = str(year4) + "-" + str(month4) + "-" + str(day4)
+##    content += f'INSERT INTO {TABLE_NAME_8} ({",".join(TABLE_COLUMNS_8)}) VALUES ("{deliverable_id}","{project_id}","{title}", "{abstract}", "{deliveryday}");\n'
+##
+##with open(f"insert_data.sql", 'a') as f:
+##    f.write("-- deliverable \n")
+##    f.write(content)
+##    f.write("\n")
