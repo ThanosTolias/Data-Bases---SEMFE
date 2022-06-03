@@ -9,7 +9,7 @@ INNER JOIN works_on_project w
 ON w.project_id = p.project_id
 INNER JOIN researcher r
 ON r.researcher_id = w.researcher_id
-WHERE r.first_name = "Tiffany" AND r.last_name = "Stone"
+WHERE r.first_name = "Gerald" AND r.last_name = "Williams"
 ;
 
 SELECT * FROM erga_ana_ereunhth;
@@ -21,6 +21,6 @@ CREATE VIEW program_funds AS
 SELECT p.title, p.funds FROM project p
 INNER JOIN program pr
 ON pr.program_id = p.program_id
-WHERE pr.name_pr = "program224";
+WHERE pr.name_pr = "program402";
 
 select * from program_funds;
