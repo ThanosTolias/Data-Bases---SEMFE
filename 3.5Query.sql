@@ -1,4 +1,4 @@
--- 3.5 Query (mallon to swsto, gia dyo episthmonika pedia)
+-- 3.5 Query
 
 DROP VIEW IF EXISTS zeugh_pediwn;
 
