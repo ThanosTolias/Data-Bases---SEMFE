@@ -1,4 +1,4 @@
--- Query 3.8 (OF COURSE researchers work only on active projects, who would have thought that)
+-- Query 3.8
 SELECT r.researcher_id, r.first_name, r.last_name, count(*) projects_without_deliverable
 FROM researcher r
 INNER JOIN works_on_project w
@@ -18,4 +18,5 @@ ORDER BY p.project_id
 ) nodel_projects
 ON nodel_projects.project_id = w.project_id
 GROUP BY r.first_name, r.last_name, r.researcher_id
-HAVING count(*) >= 1;
+HAVING count(*) >= 5
+ORDER BY count(*) desc;
