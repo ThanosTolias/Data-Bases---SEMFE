@@ -14,7 +14,7 @@
 
 ***3.*** Κάντε κλικ [εδώ](https://github.com/ThanosTolias/Data-Bases---SEMFE/archive/refs/heads/main.zip) έτσι ωστε κατεβαίνουν όλα τα απαραίτητα files.
 
-***4.*** Κάντε extract το προηγούμενο zip αρχείο σε κάποιο φάκελο της επιλογής σας. Τώρα, καλείστε να αντιγράψετε τον φάκελο Front\_Back-End\_Stuff (που μόλις δημιουργήθηκε) στην τοποθεσία C:xampp\htdocs. Αλλάξτε το όνομα του φακέλου Front\_Back-End\_Stuff που μόλις αντιγράψατε σε dbproject.
+***4.*** Κάντε extract το προηγούμενο zip αρχείο σε κάποιο φάκελο της επιλογής σας. Τώρα, καλείστε να αντιγράψετε τον φάκελο web_app (που μόλις δημιουργήθηκε) στην τοποθεσία C:xampp\htdocs. Αλλάξτε το όνομα του φακέλου web_app που μόλις αντιγράψατε σε dbproject.
 
 ***5.*** Ανοίξτε ένα terminal (shell) πατώντας το κουμπί Shell στο XAMPP Control Panel. Με εντολές "cd" (change directory) καταλήξτε στο directory που κάνατε extract το zip αρχείο. **Για παράδειγμα**, αν έχετε κάνει extract το zip αρχείο στον φάκελο Downloads τότε πληκτρολογήστε:
 ```sh
