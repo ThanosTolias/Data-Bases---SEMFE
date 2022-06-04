@@ -1,7 +1,7 @@
 with given(project_id) as
 (select project_id 
 from scientific_field_project
-where scfield_id = 36649
+where scfield_id = 40532
 )
 select title 
 from project 
@@ -11,7 +11,7 @@ where project.project_id in
 with given(project_id) as
 (select project_id 
 from scientific_field_project
-where scfield_id = 36649
+where scfield_id = 40532
 ),
 resIDs(researcher_id) as
 (select researcher_id 
