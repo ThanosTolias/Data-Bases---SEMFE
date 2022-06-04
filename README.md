@@ -30,12 +30,12 @@ mysql -u root -p
 
 ***7.***  Τρέξτε τα παρακάτω commands στο παραπάνω shell με την σειρα που δίνονται:
 ```sh
-source fakelos\create_tables.sql
-source fakelos\indexes.sql
-source fakelos\triggers.sql
-source fakelos\insert_data.sql
+source db_setup\create_tables.sql
+source db_setup\indexes.sql
+source db_setup\triggers.sql
+source db_setup\insert_data.sql
 ```
-***8.*** Ανοίξτε τον web browser της επιλογής σας και πληκτρολογήστε την διεύθυνση [http://localhost/dbproject/](http://localhost/dashboard/) (ή [http://127.0.0.1/dbproject/](http://127.0.0.1/dbproject/)).
+***8.*** Ανοίξτε τον web browser της επιλογής σας και πληκτρολογήστε την διεύθυνση [http://localhost/dbproject/](http://localhost/dbproject/) (ή [http://127.0.0.1/dbproject/](http://127.0.0.1/dbproject/)).
 Σε περίπτωση που δεν ανοίγει η σελίδα, βεβαιωθείτε ότι ο Apache τρέχει στην port 80 (default) κοιτάζοντας το μέσα από το XAMPP Control Panel. Αν όχι, πληκτρολογήστε στον web browser σας την διεύθυνση:
 localhost:"newport"/dbproject (ή 127.0.0.1:"newport"/dbproject)
 όπου "newport" είναι η port που τρέχει ο Apache (όπως εντοπίσατε από το XAMPP Control Panel).
